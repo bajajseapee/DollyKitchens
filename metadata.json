@@ -1,0 +1,6 @@
+{
+  "name": "Dolly Kitchen's",
+  "description": "Explore delicious Chinese, Indian and Tandoor food at Dolly Kitchen's, Lonavala. Browse our menu and order takeaway or home delivery directly through WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
