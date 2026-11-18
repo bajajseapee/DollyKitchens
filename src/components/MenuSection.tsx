@@ -161,8 +161,8 @@ export function MenuSection({
             </h2>
             <p className="text-sm sm:text-base text-[#F5EBE1]/80 mt-2 max-w-2xl">
               Select dishes, portions, and quantities below, then review your order in the cart to
-              send it directly to Dolly Kitchen's on WhatsApp. Dish photographs are representative
-              culinary visuals.
+              send it directly to Dolly's Kitchen on WhatsApp. Dish photographs are representative
+              kitchen previews.
             </p>
           </div>
 

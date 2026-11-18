@@ -14,7 +14,9 @@ export function HeroSection() {
           {/* Left Copy Column */}
           <div className="lg:col-span-6 flex flex-col justify-center py-2 lg:py-6">
             <p className="text-xs sm:text-sm font-medium tracking-wide text-[#E5A93C] mb-4">
-              {BUSINESS_INFO.location} <span aria-hidden="true" className="mx-1.5">·</span>{' '}
+              {BUSINESS_INFO.name} ({BUSINESS_INFO.hindiName}){' '}
+              <span aria-hidden="true" className="mx-1.5">·</span> {BUSINESS_INFO.location}{' '}
+              <span aria-hidden="true" className="mx-1.5">·</span>{' '}
               {BUSINESS_INFO.cuisines.join(' · ')}
             </p>
 
@@ -55,7 +57,7 @@ export function HeroSection() {
             <div className="relative w-full min-h-[280px] sm:min-h-[380px] lg:h-full rounded-xl overflow-hidden border border-[#E5A93C]/25 bg-[#1F191B]">
               <FoodImage
                 src={FOOD_IMAGES.heroFeast}
-                alt="Illustrative spread of Indian butter chicken, saffron biryani, charred tandoori starters, garlic naan, and wok-tossed noodles"
+                alt="Spread of Butter Chicken, Chicken Biryani, Tandoori Chicken, Garlic Naan, and Hakka Noodles served fresh at Dolly's Kitchen"
                 loading="eager"
                 className="w-full h-full object-cover"
               />

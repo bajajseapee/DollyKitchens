@@ -12,7 +12,7 @@ export function Footer() {
               href="#home"
               className="font-display text-2xl font-bold text-[#F4C430] inline-block"
             >
-              {BUSINESS_INFO.name}
+              {BUSINESS_INFO.name} <span className="text-lg font-medium text-[#FFF8EE]/85">· {BUSINESS_INFO.hindiName}</span>
             </a>
             <p className="text-sm text-[#F5EBE1]/80 max-w-sm leading-relaxed">
               {BUSINESS_INFO.tagline} Freshly prepared Chinese, Indian &amp; Tandoor food in{' '}

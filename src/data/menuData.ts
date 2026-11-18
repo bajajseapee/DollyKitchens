@@ -1,11 +1,12 @@
-import { BulkOrderItem, GalleryItem, MenuCategoryMeta, MenuItem } from '../types/menu';
+import type { BulkOrderItem, GalleryItem, MenuCategoryMeta, MenuItem } from '../types/menu.ts';
 
 export const BUSINESS_INFO = {
-  name: "Dolly Kitchen's",
+  name: "Dolly's Kitchen",
+  hindiName: 'डॉलीज़ किचन',
   tagline: 'Homestyle Flavors, Crafted with Love.',
   heroHeadline: 'Good Food. Great Flavours. Crafted with Love.',
   heroSubtext:
-    "Explore delicious Chinese, Indian and Tandoor favourites at Dolly Kitchen's, Lonavala.",
+    "Explore delicious Chinese, Indian and Tandoor favourites at Dolly's Kitchen, Lonavala.",
   location: 'Lonavala, Maharashtra, India',
   phone: '8888010822',
   phoneHref: 'tel:+918888010822',
@@ -16,21 +17,21 @@ export const BUSINESS_INFO = {
   hours: '4:30 PM – 11:30 PM',
   services: ['Takeaway', 'Home Delivery'] as const,
   cuisines: ['Chinese', 'Indian', 'Tandoor'] as const,
-  signboardImage: '/assets/aistudio/Dolly_Kitchen_s_Warm_Restaurant_Signboard_0f1072ca.png',
+  signboardImage: '/src/assets/images/dollys_kitchen_sign_1795017300665.jpg',
 };
 
 const IMG = (filename: string) => `/src/assets/images/${filename}`;
 
 export const FOOD_IMAGES = {
-  heroFeast: IMG('hero_indian_tandoor_feast_1794918909200.jpg'),
-  tandoorChicken: IMG('food_tandoori_chicken_kebab_1794918910456.jpg'),
-  paneerTikka: IMG('food_paneer_tikka_skewers_1794918910777.jpg'),
-  chineseWok: IMG('food_chinese_wok_noodles_1794918910917.jpg'),
-  indianCurry: IMG('food_indian_curry_handi_1794918911869.jpg'),
-  dumBiryani: IMG('food_royal_dum_biryani_1794918912444.jpg'),
-  garlicNaan: IMG('food_garlic_naan_breads_1794918912517.jpg'),
-  soupsSides: IMG('food_manchow_soup_sides_1794918913302.jpg'),
-  sweetsLassi: IMG('food_gulab_jamun_lassi_1794918913801.jpg'),
+  heroFeast: IMG('raw_hero_feast_1795016154436.jpg'),
+  tandoorChicken: IMG('raw_tandoori_chicken_1795016168720.jpg'),
+  paneerTikka: IMG('raw_paneer_tikka_1795016161670.jpg'),
+  chineseWok: '/assets/aistudio/IMG-20261118-WA0007_9f159218.jpg',
+  indianCurry: IMG('raw_paneer_buttermasala_1795016250367.jpg'),
+  dumBiryani: IMG('raw_chicken_biryani_1795016592944.jpg'),
+  garlicNaan: IMG('raw_garlic_naan_1795016599240.jpg'),
+  soupsSides: IMG('raw_veg_manchowsoup_1795016243544.jpg'),
+  sweetsLassi: IMG('raw_gulab_jamun_1795016213591.jpg'),
 };
 
 export const MENU_CATEGORIES: MenuCategoryMeta[] = [
@@ -93,7 +94,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Beverages',
     dietary: 'neutral',
-    image: IMG('chilled_mineral_water_1794919421860.jpg'),
+    image: IMG('raw_bisleri_water_1795016242493.jpg'),
   },
   {
     id: 'ref-cold-drink-small',
@@ -102,7 +103,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Beverages',
     dietary: 'neutral',
-    image: IMG('iced_cola_drink_1794919423341.jpg'),
+    image: IMG('raw_cold_drink_1795016154004.jpg'),
     portionNote: 'Small bottle',
     groupId: 'grp-cold-drink',
     groupTitle: 'Cold Drink',
@@ -115,7 +116,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Beverages',
     dietary: 'neutral',
-    image: IMG('iced_cola_drink_1794919423341.jpg'),
+    image: IMG('raw_cold_drink_1795016154004.jpg'),
     portionNote: '500 ml',
     groupId: 'grp-cold-drink',
     groupTitle: 'Cold Drink',
@@ -128,7 +129,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Beverages',
     dietary: 'veg',
-    image: IMG('masala_chai_tea_1794919422459.jpg'),
+    image: IMG('raw_masala_tea_1795016154099.jpg'),
   },
   {
     id: 'ref-coffee',
@@ -137,7 +138,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Beverages',
     dietary: 'veg',
-    image: IMG('hot_filter_coffee_1794919423670.jpg'),
+    image: IMG('raw_hot_coffee_1795016154305.jpg'),
   },
   {
     id: 'ref-buttermilk',
@@ -146,7 +147,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Beverages',
     dietary: 'veg',
-    image: IMG('spiced_masala_buttermilk_1794919424141.jpg'),
+    image: IMG('raw_buttermilk_chaas_1795016155300.jpg'),
   },
   {
     id: 'ref-sweet-lassi',
@@ -155,7 +156,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Beverages',
     dietary: 'veg',
-    image: IMG('sweet_lassi_drink_1794919478288.jpg'),
+    image: IMG('raw_sweet_lassi_1795016155020.jpg'),
   },
 
   // A. REFRESHMENTS & SIDES — Papad & Salads
@@ -166,7 +167,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Papad & Salads',
     dietary: 'veg',
-    image: IMG('roasted_crispy_papad_1794919424739.jpg'),
+    image: IMG('raw_roasted_papad_1795016156003.jpg'),
   },
   {
     id: 'ref-fried-papad',
@@ -175,7 +176,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Papad & Salads',
     dietary: 'veg',
-    image: IMG('fried_papad_platter_1794919478138.jpg'),
+    image: IMG('raw_fried_papad_1795016155550.jpg'),
   },
   {
     id: 'ref-masala-papad',
@@ -184,7 +185,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Papad & Salads',
     dietary: 'veg',
-    image: IMG('masala_papad_snack_1794919478889.jpg'),
+    image: IMG('raw_masala_papad_1795016158985.jpg'),
   },
   {
     id: 'ref-plain-curd',
@@ -193,7 +194,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Papad & Salads',
     dietary: 'veg',
-    image: IMG('plain_curd_bowl_1794919478492.jpg'),
+    image: IMG('raw_plain_curd_1795016156739.jpg'),
   },
   {
     id: 'ref-green-salad',
@@ -202,7 +203,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Papad & Salads',
     dietary: 'veg',
-    image: IMG('fresh_green_salad_1794919425015.jpg'),
+    image: IMG('raw_green_salad_1795016157251.jpg'),
   },
   {
     id: 'ref-raita',
@@ -211,7 +212,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'refreshments',
     subCategory: 'Papad & Salads',
     dietary: 'veg',
-    image: IMG('cucumber_boondi_raita_1794919425552.jpg'),
+    image: IMG('raw_cucumber_raita_1795016157545.jpg'),
   },
 
   // B. SOUPS — Vegetarian
@@ -222,7 +223,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'soups',
     subCategory: 'Vegetarian Soups',
     dietary: 'veg',
-    image: IMG('food_manchow_soup_sides_1794918913302.jpg'),
+    image: IMG('raw_veg_manchowsoup_1795016243544.jpg'),
   },
   {
     id: 'soup-veg-hot-sour',
@@ -231,7 +232,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'soups',
     subCategory: 'Vegetarian Soups',
     dietary: 'veg',
-    image: IMG('hot_sour_soup_1794919425670.jpg'),
+    image: IMG('raw_veg_hotsour_1795016158618.jpg'),
   },
   {
     id: 'soup-veg-clear',
@@ -240,7 +241,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'soups',
     subCategory: 'Vegetarian Soups',
     dietary: 'veg',
-    image: IMG('clear_veg_soup_1794919426047.jpg'),
+    image: IMG('raw_veg_clear_1795016159079.jpg'),
   },
 
   // B. SOUPS — Non-Vegetarian
@@ -251,7 +252,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'soups',
     subCategory: 'Non-Vegetarian Soups',
     dietary: 'non-veg',
-    image: IMG('nonveg_manchow_soup_1794919479347.jpg'),
+    image: IMG('raw_chick_manchowsoup_1795016243751.jpg'),
   },
   {
     id: 'soup-nonveg-hot-sour',
@@ -260,7 +261,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'soups',
     subCategory: 'Non-Vegetarian Soups',
     dietary: 'non-veg',
-    image: IMG('nonveg_hotsour_soup_1794919480553.jpg'),
+    image: IMG('raw_chicken_hotsour_1795016160279.jpg'),
   },
   {
     id: 'soup-nonveg-clear',
@@ -269,7 +270,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'soups',
     subCategory: 'Non-Vegetarian Soups',
     dietary: 'non-veg',
-    image: IMG('nonveg_clear_soup_1794919480071.jpg'),
+    image: IMG('raw_chicken_clear_1795016160983.jpg'),
   },
 
   // C. TANDOOR & INDIAN STARTERS — Vegetarian
@@ -280,7 +281,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Vegetarian Starters',
     dietary: 'veg',
-    image: IMG('food_paneer_tikka_skewers_1794918910777.jpg'),
+    image: IMG('raw_paneer_tikka_1795016161670.jpg'),
   },
   {
     id: 'tan-paneer-pahadi-tikka',
@@ -289,7 +290,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Vegetarian Starters',
     dietary: 'veg',
-    image: IMG('paneer_pahadi_tikka_1794919426846.jpg'),
+    image: IMG('raw_paneer_pahadi_1795016163155.jpg'),
   },
   {
     id: 'tan-paneer-banjara-kebab',
@@ -298,7 +299,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Vegetarian Starters',
     dietary: 'veg',
-    image: IMG('paneer_banjara_kebab_1794919481455.jpg'),
+    image: IMG('raw_paneer_banjara_1795016162633.jpg'),
   },
   {
     id: 'tan-paneer-achari-kebab',
@@ -307,7 +308,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Vegetarian Starters',
     dietary: 'veg',
-    image: IMG('paneer_achari_kebab_1794919481111.jpg'),
+    image: IMG('raw_paneer_achari_1795016163377.jpg'),
   },
   {
     id: 'tan-paneer-reshmi-tikka',
@@ -316,7 +317,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Vegetarian Starters',
     dietary: 'veg',
-    image: IMG('paneer_malai_tikka_1794919426851.jpg'),
+    image: IMG('raw_paneer_reshmi_1795016165164.jpg'),
   },
 
   // C. TANDOOR & INDIAN STARTERS — Non-Vegetarian
@@ -327,7 +328,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Non-Vegetarian Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_tikka_skewers_1794919481538.jpg'),
+    image: IMG('raw_chicken_tikka_1795016165113.jpg'),
   },
   {
     id: 'tan-chicken-achari-kebab',
@@ -336,7 +337,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Non-Vegetarian Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_achari_kebab_1794919482405.jpg'),
+    image: IMG('raw_chicken_achari_1795016165558.jpg'),
   },
   {
     id: 'tan-chicken-banjara-kebab',
@@ -345,7 +346,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Non-Vegetarian Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_banjara_kebab_1794919483169.jpg'),
+    image: IMG('raw_chicken_banjara_1795016166507.jpg'),
   },
   {
     id: 'tan-chicken-malai-kebab',
@@ -354,7 +355,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Non-Vegetarian Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_malai_kebab_1794919427561.jpg'),
+    image: IMG('raw_chicken_malai_1795016166901.jpg'),
   },
   {
     id: 'tan-chicken-pahadi-kebab',
@@ -363,7 +364,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Non-Vegetarian Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_pahadi_kebab_1794919428000.jpg'),
+    image: IMG('raw_chicken_pahadi_1795016167320.jpg'),
   },
   {
     id: 'tan-chicken-reshmi-kebab',
@@ -372,7 +373,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Non-Vegetarian Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_reshmi_kebab_1794919484355.jpg'),
+    image: IMG('raw_chicken_reshmi_1795016169855.jpg'),
   },
   {
     id: 'tan-chicken-tandoori-half',
@@ -381,7 +382,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Non-Vegetarian Starters',
     dietary: 'non-veg',
-    image: IMG('food_tandoori_chicken_kebab_1794918910456.jpg'),
+    image: IMG('raw_tandoori_chicken_1795016168720.jpg'),
     portionNote: 'Half portion',
     groupId: 'grp-chicken-tandoori',
     groupTitle: 'Chicken Tandoori',
@@ -394,7 +395,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tandoor',
     subCategory: 'Non-Vegetarian Starters',
     dietary: 'non-veg',
-    image: IMG('food_tandoori_chicken_kebab_1794918910456.jpg'),
+    image: IMG('raw_tandoori_chicken_1795016168720.jpg'),
     portionNote: 'Full portion',
     groupId: 'grp-chicken-tandoori',
     groupTitle: 'Chicken Tandoori',
@@ -409,7 +410,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Starters',
     dietary: 'veg',
-    image: IMG('veg_crispy_chinese_1794919484888.jpg'),
+    image: IMG('raw_veg_crispy_1795016200248.jpg'),
   },
   {
     id: 'chi-veg-manchurian-dry',
@@ -418,7 +419,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Starters',
     dietary: 'veg',
-    image: IMG('veg_manchurian_dry_1794919484991.jpg'),
+    image: IMG('raw_manchurian_dry_1795016201083.jpg'),
   },
   {
     id: 'chi-veg-manchurian-gravy',
@@ -427,7 +428,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Starters',
     dietary: 'veg',
-    image: IMG('veg_manchurian_balls_1794919428384.jpg'),
+    image: '/assets/aistudio/IMG-20261118-WA0009_541708f8.jpg',
   },
   {
     id: 'chi-mushroom-chilli-dry',
@@ -436,7 +437,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Starters',
     dietary: 'veg',
-    image: IMG('mushroom_chilli_dry_1794919485330.jpg'),
+    image: IMG('raw_mushroom_chilli_1795016201592.jpg'),
   },
   {
     id: 'chi-paneer-chilli-dry',
@@ -445,7 +446,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Starters',
     dietary: 'veg',
-    image: IMG('paneer_chilli_dry_1794919428801.jpg'),
+    image: IMG('raw_paneer_dry_1795016202127.jpg'),
   },
   {
     id: 'chi-paneer-chilli-gravy',
@@ -454,7 +455,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Starters',
     dietary: 'veg',
-    image: IMG('paneer_chilli_gravy_1794919484980.jpg'),
+    image: IMG('raw_paneer_gravy_1795016203868.jpg'),
   },
 
   // D. CHINESE FOOD — Non-Veg Starters
@@ -465,7 +466,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_65_crispy_1794919429439.jpg'),
+    image: IMG('raw_chicken_65_1795016204774.jpg'),
   },
   {
     id: 'chi-chicken-sukka',
@@ -474,7 +475,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_sukka_fry_1794919485600.jpg'),
+    image: IMG('raw_chicken_sukka_1795016204092.jpg'),
   },
   {
     id: 'chi-chicken-chilli',
@@ -483,7 +484,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_chilli_dry_1794919485382.jpg'),
+    image: IMG('raw_chicken_chilli_1795016205622.jpg'),
   },
   {
     id: 'chi-chicken-manchurian-dry',
@@ -492,7 +493,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_manchurian_dry_1794919486003.jpg'),
+    image: IMG('raw_chick_manch_dry_1795016206129.jpg'),
   },
   {
     id: 'chi-chicken-crispy',
@@ -501,7 +502,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_crispy_strips_1794919486995.jpg'),
+    image: IMG('raw_chicken_crispy_1795016205866.jpg'),
   },
   {
     id: 'chi-chicken-pakoda',
@@ -510,7 +511,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_pakoda_fritters_1794919486487.jpg'),
+    image: IMG('raw_chicken_pakoda_1795016207245.jpg'),
   },
   {
     id: 'chi-chicken-manchurian-gravy',
@@ -519,7 +520,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_manchurian_gravy_1794919487033.jpg'),
+    image: IMG('raw_chick_manch_gravy_1795016210494.jpg'),
   },
   {
     id: 'chi-chicken-lollipop-8',
@@ -528,7 +529,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_lollipop_platter_1794919430031.jpg'),
+    image: IMG('raw_lollipop_dry_1795016207408.jpg'),
     portionNote: '8 pcs',
   },
   {
@@ -538,7 +539,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Starters',
     dietary: 'non-veg',
-    image: IMG('chicken_lollipop_gravy_1794919488032.jpg'),
+    image: IMG('raw_lollipop_gravy_1795016208432.jpg'),
     portionNote: '8 pcs',
   },
 
@@ -550,7 +551,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Rice',
     dietary: 'veg',
-    image: IMG('veg_fried_rice_1794919487763.jpg'),
+    image: IMG('raw_veg_friedrice_1795016209171.jpg'),
   },
   {
     id: 'chi-veg-schezwan-rice',
@@ -559,7 +560,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Rice',
     dietary: 'veg',
-    image: IMG('schezwan_fried_rice_1794919429877.jpg'),
+    image: IMG('raw_veg_schezwanrice_1795016208323.jpg'),
   },
   {
     id: 'chi-veg-manchurian-rice',
@@ -568,7 +569,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Rice',
     dietary: 'veg',
-    image: IMG('veg_manchurian_rice_1794919488416.jpg'),
+    image: IMG('raw_veg_manchurianrice_1795016210788.jpg'),
   },
   {
     id: 'chi-veg-triple-rice',
@@ -577,7 +578,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Veg Rice',
     dietary: 'veg',
-    image: IMG('triple_schezwan_rice_1794919430473.jpg'),
+    image: IMG('raw_veg_triplerice_1795016209273.jpg'),
   },
 
   // D. CHINESE FOOD — Non-Veg Rice
@@ -588,7 +589,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Rice',
     dietary: 'non-veg',
-    image: IMG('chicken_fried_rice_1794919488375.jpg'),
+    image: IMG('raw_chick_friedrice_1795016210205.jpg'),
   },
   {
     id: 'chi-chicken-schezwan-rice',
@@ -597,7 +598,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Rice',
     dietary: 'non-veg',
-    image: IMG('chicken_schezwan_rice_1794919488822.jpg'),
+    image: IMG('raw_chick_schezwanrice_1795016209397.jpg'),
   },
   {
     id: 'chi-chicken-triple-rice',
@@ -606,7 +607,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Non-Veg Rice',
     dietary: 'non-veg',
-    image: IMG('chicken_triple_rice_1794919488806.jpg'),
+    image: IMG('raw_chick_triplerice_1795016210269.jpg'),
   },
 
   // D. CHINESE FOOD — Noodles
@@ -617,7 +618,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Noodles',
     dietary: 'veg',
-    image: IMG('food_chinese_wok_noodles_1794918910917.jpg'),
+    image: '/assets/aistudio/IMG-20261118-WA0007_9f159218.jpg',
   },
   {
     id: 'chi-veg-schezwan-noodles',
@@ -626,7 +627,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Noodles',
     dietary: 'veg',
-    image: IMG('veg_schezwan_noodles_1794919490679.jpg'),
+    image: IMG('raw_veg_schezwannoodles_1795016210233.jpg'),
   },
   {
     id: 'chi-veg-triple-noodles',
@@ -635,7 +636,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Noodles',
     dietary: 'veg',
-    image: IMG('veg_triple_noodles_1794919489565.jpg'),
+    image: IMG('raw_veg_triplenoodles_1795016211594.jpg'),
   },
   {
     id: 'chi-chicken-hakka-noodles',
@@ -644,7 +645,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Noodles',
     dietary: 'non-veg',
-    image: IMG('chicken_hakka_noodles_1794919490677.jpg'),
+    image: IMG('raw_chick_hakkanoodles_1795016210785.jpg'),
   },
   {
     id: 'chi-chicken-schezwan-noodles',
@@ -653,7 +654,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Noodles',
     dietary: 'non-veg',
-    image: IMG('chicken_schezwan_noodles_1794919490940.jpg'),
+    image: IMG('raw_chick_schezwannoodles_1795016211128.jpg'),
   },
   {
     id: 'chi-chicken-triple-noodles',
@@ -662,7 +663,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chinese',
     subCategory: 'Noodles',
     dietary: 'non-veg',
-    image: IMG('chicken_triple_noodles_1794919491471.jpg'),
+    image: IMG('raw_chick_triplenoodles_1795016211746.jpg'),
   },
 
   // E. INDIAN MAIN COURSE — Vegetarian
@@ -673,7 +674,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('dal_fry_bowl_1794919491878.jpg'),
+    image: IMG('raw_dal_fry_1795016244306.jpg'),
   },
   {
     id: 'ind-aloo-jeera',
@@ -682,7 +683,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('aloo_jeera_gobi_1794919431822.jpg'),
+    image: IMG('raw_aloo_jeera_1795016245241.jpg'),
   },
   {
     id: 'ind-sev-bhaji',
@@ -691,7 +692,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('sev_bhaji_curry_1794919492376.jpg'),
+    image: IMG('raw_sev_bhaji_1795016246223.jpg'),
   },
   {
     id: 'ind-dal-tadka',
@@ -700,7 +701,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('golden_dal_tadka_1794919430823.jpg'),
+    image: IMG('raw_dal_tadka_1795016246388.jpg'),
   },
   {
     id: 'ind-aloo-gobi-mix-veg',
@@ -709,7 +710,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('aloo_gobi_mixveg_1794919493201.jpg'),
+    image: IMG('raw_aloo_gobi_1795016247556.jpg'),
   },
   {
     id: 'ind-veg-kolhapuri',
@@ -718,7 +719,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('veg_kolhapuri_kadai_1794919432624.jpg'),
+    image: IMG('raw_veg_kolhapuri_1795016247441.jpg'),
   },
   {
     id: 'ind-green-peas-masala',
@@ -727,7 +728,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('green_peas_masala_1794919526622.jpg'),
+    image: IMG('raw_peas_masala_1795016247794.jpg'),
   },
   {
     id: 'ind-veg-maratha',
@@ -736,7 +737,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('veg_maratha_curry_1794919527184.jpg'),
+    image: IMG('raw_veg_maratha_1795016248158.jpg'),
   },
   {
     id: 'ind-veg-kadai',
@@ -745,7 +746,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('veg_kadai_curry_1794919527831.jpg'),
+    image: IMG('raw_veg_kadai_1795016248325.jpg'),
   },
   {
     id: 'ind-matar-paneer',
@@ -754,7 +755,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('matar_paneer_masala_1794919433215.jpg'),
+    image: IMG('raw_matar_paneer_1795016249103.jpg'),
   },
   {
     id: 'ind-mushroom-masala',
@@ -763,7 +764,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('mushroom_masala_curry_1794919528133.jpg'),
+    image: IMG('raw_mushroom_masala_1795016249992.jpg'),
   },
   {
     id: 'ind-paneer-masala',
@@ -772,7 +773,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('paneer_masala_curry_1794919528091.jpg'),
+    image: IMG('raw_paneer_masala_1795016249325.jpg'),
   },
   {
     id: 'ind-paneer-kadai',
@@ -781,7 +782,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('paneer_kadai_curry_1794919528287.jpg'),
+    image: IMG('raw_paneer_kadai_1795016250211.jpg'),
   },
   {
     id: 'ind-kaju-curry',
@@ -790,7 +791,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('kaju_curry_rich_1794919529622.jpg'),
+    image: IMG('raw_kaju_curry_1795016249737.jpg'),
   },
   {
     id: 'ind-veg-handi-half',
@@ -799,7 +800,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('veg_handi_pot_1794919529313.jpg'),
+    image: IMG('raw_veg_handi_1795016250388.jpg'),
     portionNote: 'Half portion',
     groupId: 'grp-veg-handi',
     groupTitle: 'Veg Handi',
@@ -812,7 +813,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('food_indian_curry_handi_1794918911869.jpg'),
+    image: IMG('raw_paneer_buttermasala_1795016250367.jpg'),
   },
   {
     id: 'ind-kaju-masala',
@@ -821,7 +822,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('kaju_masala_curry_1794919433290.jpg'),
+    image: IMG('raw_kaju_masala_1795016250764.jpg'),
   },
   {
     id: 'ind-paneer-tikka-masala',
@@ -830,7 +831,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('paneer_tikka_masala_1794919530871.jpg'),
+    image: IMG('raw_paneertikka_masala_1795016250549.jpg'),
   },
   {
     id: 'ind-paneer-handi-half',
@@ -839,7 +840,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('paneer_handi_pot_1794919530104.jpg'),
+    image: IMG('raw_paneer_handi_1795016251888.jpg'),
     portionNote: 'Half portion',
     groupId: 'grp-paneer-handi',
     groupTitle: 'Paneer Handi',
@@ -852,7 +853,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('paneer_tikka_handi_1794919531746.jpg'),
+    image: IMG('raw_paneertikka_handi_1795016252491.jpg'),
     portionNote: 'Half portion',
     groupId: 'grp-paneer-tikka-handi',
     groupTitle: 'Paneer Tikka Handi',
@@ -865,7 +866,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('veg_handi_pot_1794919529313.jpg'),
+    image: IMG('raw_veg_handi_1795016250388.jpg'),
     portionNote: 'Full portion',
     groupId: 'grp-veg-handi',
     groupTitle: 'Veg Handi',
@@ -878,7 +879,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('paneer_tikka_handi_1794919531746.jpg'),
+    image: IMG('raw_paneertikka_handi_1795016252491.jpg'),
     portionNote: 'Full portion',
     groupId: 'grp-paneer-tikka-handi',
     groupTitle: 'Paneer Tikka Handi',
@@ -891,7 +892,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Vegetarian Main Course',
     dietary: 'veg',
-    image: IMG('paneer_handi_pot_1794919530104.jpg'),
+    image: IMG('raw_paneer_handi_1795016251888.jpg'),
     portionNote: 'Full portion',
     groupId: 'grp-paneer-handi',
     groupTitle: 'Paneer Handi',
@@ -906,7 +907,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('egg_curry_gravy_1794919530723.jpg'),
+    image: IMG('raw_egg_curry_1795016252470.jpg'),
   },
   {
     id: 'ind-egg-masala',
@@ -915,7 +916,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('spiced_egg_masala_1794919433233.jpg'),
+    image: IMG('raw_egg_masala_1795016253160.jpg'),
   },
   {
     id: 'ind-chicken-curry',
@@ -924,7 +925,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_curry_homestyle_1794919531248.jpg'),
+    image: IMG('raw_chicken_curry_1795016253893.jpg'),
   },
   {
     id: 'ind-chicken-masala',
@@ -933,7 +934,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_masala_curry_1794919532011.jpg'),
+    image: IMG('raw_chicken_masala_1795016253520.jpg'),
   },
   {
     id: 'ind-chicken-kadai',
@@ -942,7 +943,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_kadai_curry_1794919531932.jpg'),
+    image: IMG('raw_chicken_kadai_1795016254171.jpg'),
   },
   {
     id: 'ind-chicken-butter-masala',
@@ -951,7 +952,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_butter_masala_1794919532781.jpg'),
+    image: IMG('raw_chicken_buttermasala_1795016254549.jpg'),
   },
   {
     id: 'ind-chicken-kolhapuri',
@@ -960,7 +961,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_kolhapuri_spicy_1794919533716.jpg'),
+    image: IMG('raw_chicken_kolhapuri_1795016255322.jpg'),
   },
   {
     id: 'ind-mutton-curry',
@@ -969,7 +970,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('mutton_curry_homestyle_1794919532860.jpg'),
+    image: IMG('raw_mutton_curry_1795016257100.jpg'),
   },
   {
     id: 'ind-chicken-handi-half',
@@ -978,7 +979,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_handi_pot_1794919533605.jpg'),
+    image: IMG('raw_chicken_handi_1795016256578.jpg'),
     portionNote: 'Half portion',
     groupId: 'grp-chicken-handi',
     groupTitle: 'Chicken Handi',
@@ -991,7 +992,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('mutton_masala_curry_1794919533750.jpg'),
+    image: IMG('raw_mutton_masala_1795016258109.jpg'),
   },
   {
     id: 'ind-mutton-kolhapuri',
@@ -1000,7 +1001,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('mutton_kolhapuri_spicy_1794919534165.jpg'),
+    image: IMG('raw_mutton_kolhapuri_1795016258375.jpg'),
   },
   {
     id: 'ind-chicken-malvani-half',
@@ -1009,7 +1010,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_malvani_curry_1794919534741.jpg'),
+    image: IMG('raw_chicken_malvani_1795016588277.jpg'),
     portionNote: 'Half portion',
     groupId: 'grp-chicken-malvani',
     groupTitle: 'Chicken Malvani',
@@ -1022,7 +1023,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('butter_chicken_handi_1794919535902.jpg'),
+    image: IMG('raw_butter_chickhandi_1795016589003.jpg'),
     portionNote: 'Half portion',
     groupId: 'grp-butter-chicken-handi',
     groupTitle: 'Butter Chicken Handi',
@@ -1035,7 +1036,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_handi_pot_1794919533605.jpg'),
+    image: IMG('raw_chicken_handi_1795016256578.jpg'),
     portionNote: 'Full portion',
     groupId: 'grp-chicken-handi',
     groupTitle: 'Chicken Handi',
@@ -1048,7 +1049,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('mutton_handi_curry_1794919433697.jpg'),
+    image: IMG('raw_mutton_handi_1795016589608.jpg'),
     portionNote: 'Half portion',
     groupId: 'grp-mutton-handi',
     groupTitle: 'Mutton Handi',
@@ -1061,7 +1062,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('chicken_malvani_curry_1794919534741.jpg'),
+    image: IMG('raw_chicken_malvani_1795016588277.jpg'),
     portionNote: 'Full portion',
     groupId: 'grp-chicken-malvani',
     groupTitle: 'Chicken Malvani',
@@ -1074,7 +1075,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('butter_chicken_handi_1794919535902.jpg'),
+    image: IMG('raw_butter_chickhandi_1795016589003.jpg'),
     portionNote: 'Full portion',
     groupId: 'grp-butter-chicken-handi',
     groupTitle: 'Butter Chicken Handi',
@@ -1087,7 +1088,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'indian-main',
     subCategory: 'Non-Vegetarian Main Course',
     dietary: 'non-veg',
-    image: IMG('mutton_handi_curry_1794919433697.jpg'),
+    image: IMG('raw_mutton_handi_1795016589608.jpg'),
     portionNote: 'Full portion',
     groupId: 'grp-mutton-handi',
     groupTitle: 'Mutton Handi',
@@ -1102,7 +1103,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Rice & Khichdi',
     dietary: 'veg',
-    image: IMG('steamed_basmati_rice_1794919535032.jpg'),
+    image: IMG('raw_steamed_rice_1795016587703.jpg'),
   },
   {
     id: 'rice-jeera-rice',
@@ -1111,7 +1112,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Rice & Khichdi',
     dietary: 'veg',
-    image: IMG('jeera_steamed_rice_1794919433383.jpg'),
+    image: IMG('raw_jeera_rice_1795016589495.jpg'),
   },
   {
     id: 'rice-curd-rice',
@@ -1120,7 +1121,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Rice & Khichdi',
     dietary: 'veg',
-    image: IMG('curd_rice_tempered_1794919434445.jpg'),
+    image: IMG('raw_curd_rice_1795016589470.jpg'),
   },
   {
     id: 'rice-dal-khichdi',
@@ -1129,7 +1130,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Rice & Khichdi',
     dietary: 'veg',
-    image: IMG('dal_khichdi_plain_1794919535360.jpg'),
+    image: IMG('raw_dal_khichdi_1795016590226.jpg'),
   },
   {
     id: 'rice-dal-khichdi-tadka',
@@ -1138,7 +1139,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Rice & Khichdi',
     dietary: 'veg',
-    image: IMG('dal_khichdi_tadka_1794919435204.jpg'),
+    image: IMG('raw_khichdi_tadka_1795016590534.jpg'),
   },
   {
     id: 'rice-veg-pulao',
@@ -1147,7 +1148,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Pulao & Biryani',
     dietary: 'veg',
-    image: IMG('veg_pulao_fragrant_1794919536162.jpg'),
+    image: IMG('raw_veg_pulao_1795016590825.jpg'),
   },
   {
     id: 'rice-veg-biryani',
@@ -1156,7 +1157,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Pulao & Biryani',
     dietary: 'veg',
-    image: IMG('veg_biryani_pot_1794919536889.jpg'),
+    image: IMG('raw_veg_biryani_1795016591361.jpg'),
   },
   {
     id: 'rice-chicken-pulao',
@@ -1165,7 +1166,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Pulao & Biryani',
     dietary: 'non-veg',
-    image: IMG('chicken_pulao_fragrant_1794919538195.jpg'),
+    image: IMG('raw_chicken_pulao_1795016592442.jpg'),
   },
   {
     id: 'rice-chicken-biryani',
@@ -1174,7 +1175,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Pulao & Biryani',
     dietary: 'non-veg',
-    image: IMG('food_royal_dum_biryani_1794918912444.jpg'),
+    image: IMG('raw_chicken_biryani_1795016592944.jpg'),
   },
   {
     id: 'rice-chicken-boneless-biryani',
@@ -1183,7 +1184,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Pulao & Biryani',
     dietary: 'non-veg',
-    image: IMG('chicken_boneless_biryani_1794919537194.jpg'),
+    image: IMG('raw_boneless_biryani_1795016593351.jpg'),
   },
   {
     id: 'rice-mutton-biryani',
@@ -1192,7 +1193,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'rice-biryani',
     subCategory: 'Pulao & Biryani',
     dietary: 'non-veg',
-    image: IMG('mutton_biryani_pot_1794919538155.jpg'),
+    image: IMG('raw_mutton_biryani_1795016595204.jpg'),
   },
 
   // G. ROTI & NAAN
@@ -1203,7 +1204,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('whole_wheat_chapati_1794919537871.jpg'),
+    image: IMG('raw_chapati_1795016594270.jpg'),
   },
   {
     id: 'bread-tandoori-roti',
@@ -1212,7 +1213,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('tandoori_roti_charred_1794919538400.jpg'),
+    image: IMG('raw_tandoori_roti_1795016595755.jpg'),
   },
   {
     id: 'bread-butter-roti',
@@ -1221,7 +1222,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('butter_tandoori_roti_1794919538894.jpg'),
+    image: IMG('raw_butter_roti_1795016596747.jpg'),
   },
   {
     id: 'bread-bhakri',
@@ -1230,7 +1231,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('maharashtrian_bhakri_roti_1794919434967.jpg'),
+    image: IMG('raw_bhakri_1795016597148.jpg'),
   },
   {
     id: 'bread-lachha-paratha',
@@ -1239,7 +1240,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('flaky_lachha_paratha_1794919538696.jpg'),
+    image: IMG('raw_lachha_paratha_1795016597619.jpg'),
   },
   {
     id: 'bread-plain-naan',
@@ -1248,7 +1249,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('plain_tandoori_naan_1794919539318.jpg'),
+    image: IMG('raw_plain_naan_1795016597820.jpg'),
   },
   {
     id: 'bread-butter-naan',
@@ -1257,7 +1258,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('butter_naan_flatbread_1794919539425.jpg'),
+    image: IMG('raw_butter_naan_1795016598761.jpg'),
   },
   {
     id: 'bread-garlic-naan',
@@ -1266,7 +1267,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('food_garlic_naan_breads_1794918912517.jpg'),
+    image: IMG('raw_garlic_naan_1795016599240.jpg'),
   },
   {
     id: 'bread-cheese-garlic-naan',
@@ -1275,7 +1276,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'roti-naan',
     subCategory: 'Indian Breads',
     dietary: 'veg',
-    image: IMG('cheese_garlic_naan_1794919437214.jpg'),
+    image: IMG('raw_cheese_naan_1795016600016.jpg'),
   },
 
   // H. EXTRAS & SWEET ENDINGS
@@ -1286,7 +1287,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'extras-sweets',
     subCategory: 'Extras & Sweets',
     dietary: 'veg',
-    image: IMG('schezwan_chutney_dip_1794919539731.jpg'),
+    image: IMG('raw_schezwan_chutney_1795016212804.jpg'),
   },
   {
     id: 'ext-extra-raita',
@@ -1295,7 +1296,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'extras-sweets',
     subCategory: 'Extras & Sweets',
     dietary: 'veg',
-    image: IMG('extra_raita_cup_1794919540962.jpg'),
+    image: IMG('raw_extra_raita_1795016213091.jpg'),
   },
   {
     id: 'ext-gulab-jamun',
@@ -1304,7 +1305,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'extras-sweets',
     subCategory: 'Extras & Sweets',
     dietary: 'veg',
-    image: IMG('food_gulab_jamun_lassi_1794918913801.jpg'),
+    image: IMG('raw_gulab_jamun_1795016213591.jpg'),
   },
 ];
 
@@ -1316,35 +1317,35 @@ export const BULK_ORDER_ITEMS: BulkOrderItem[] = [
     name: 'Veg Biryani',
     subCategory: 'Royal Biryanis',
     dietary: 'veg',
-    image: IMG('veg_biryani_pot_1794919536889.jpg'),
+    image: IMG('raw_veg_biryani_1795016591361.jpg'),
   },
   {
     id: 'bulk-egg-biryani',
     name: 'Egg Biryani',
     subCategory: 'Royal Biryanis',
     dietary: 'non-veg',
-    image: IMG('egg_dum_biryani_1794919944402.jpg'),
+    image: IMG('raw_egg_biryani_1795016600417.jpg'),
   },
   {
     id: 'bulk-chicken-biryani',
     name: 'Chicken Biryani',
     subCategory: 'Royal Biryanis',
     dietary: 'non-veg',
-    image: IMG('food_royal_dum_biryani_1794918912444.jpg'),
+    image: IMG('raw_chicken_biryani_1795016592944.jpg'),
   },
   {
     id: 'bulk-chicken-tikka-biryani',
     name: 'Chicken Tikka Biryani',
     subCategory: 'Royal Biryanis',
     dietary: 'non-veg',
-    image: IMG('chicken_tikka_biryani_1794919944993.jpg'),
+    image: IMG('raw_tikka_biryani_1795016601061.jpg'),
   },
   {
     id: 'bulk-mutton-biryani',
     name: 'Mutton Biryani',
     subCategory: 'Royal Biryanis',
     dietary: 'non-veg',
-    image: IMG('mutton_biryani_pot_1794919538155.jpg'),
+    image: IMG('raw_mutton_biryani_1795016595204.jpg'),
   },
 
   // Fragrant Pulaos
@@ -1353,35 +1354,35 @@ export const BULK_ORDER_ITEMS: BulkOrderItem[] = [
     name: 'Veg Pulao',
     subCategory: 'Fragrant Pulaos',
     dietary: 'veg',
-    image: IMG('veg_pulao_fragrant_1794919536162.jpg'),
+    image: IMG('raw_veg_pulao_1795016590825.jpg'),
   },
   {
     id: 'bulk-chicken-pulao',
     name: 'Chicken Pulao',
     subCategory: 'Fragrant Pulaos',
     dietary: 'non-veg',
-    image: IMG('chicken_pulao_fragrant_1794919538195.jpg'),
+    image: IMG('raw_chicken_pulao_1795016592442.jpg'),
   },
   {
     id: 'bulk-mutton-pulao',
     name: 'Mutton Pulao',
     subCategory: 'Fragrant Pulaos',
     dietary: 'non-veg',
-    image: IMG('mutton_pulao_platter_1794919945963.jpg'),
+    image: IMG('raw_mutton_pulao_1795016601606.jpg'),
   },
   {
     id: 'bulk-chicken-yakhni-pulao',
     name: 'Chicken Yakhni Pulao',
     subCategory: 'Fragrant Pulaos',
     dietary: 'non-veg',
-    image: IMG('chicken_yakhni_pulao_1794919945559.jpg'),
+    image: IMG('raw_chick_yakhni_1795016602351.jpg'),
   },
   {
     id: 'bulk-mutton-yakhni-pulao',
     name: 'Mutton Yakhni Pulao',
     subCategory: 'Fragrant Pulaos',
     dietary: 'non-veg',
-    image: IMG('mutton_yakhni_pulao_1794919946587.jpg'),
+    image: IMG('raw_mutton_yakhni_1795016602456.jpg'),
   },
 
   // Specialties & Curries
@@ -1390,35 +1391,35 @@ export const BULK_ORDER_ITEMS: BulkOrderItem[] = [
     name: 'Chicken Dalcha Rice',
     subCategory: 'Specialties & Curries',
     dietary: 'non-veg',
-    image: IMG('chicken_dalcha_rice_1794919947565.jpg'),
+    image: IMG('raw_chick_dalcha_1795016602569.jpg'),
   },
   {
     id: 'bulk-mutton-dalcha-rice',
     name: 'Mutton Dalcha Rice',
     subCategory: 'Specialties & Curries',
     dietary: 'non-veg',
-    image: IMG('mutton_dalcha_rice_1794919947207.jpg'),
+    image: IMG('raw_mutton_dalcha_1795016602641.jpg'),
   },
   {
     id: 'bulk-chicken-curry-gavran',
     name: 'Chicken Curry (Gavran)',
     subCategory: 'Specialties & Curries',
     dietary: 'non-veg',
-    image: IMG('gavran_chicken_curry_1794919949444.jpg'),
+    image: IMG('raw_gavran_chicken_1795016604217.jpg'),
   },
   {
     id: 'bulk-mutton-curry-gavran',
     name: 'Mutton Curry (Gavran)',
     subCategory: 'Specialties & Curries',
     dietary: 'non-veg',
-    image: IMG('gavran_mutton_curry_1794919948805.jpg'),
+    image: IMG('raw_gavran_mutton_1795016604606.jpg'),
   },
   {
     id: 'bulk-steamed-plain-rice',
     name: 'Steamed / Plain Rice',
     subCategory: 'Specialties & Curries',
     dietary: 'veg',
-    image: IMG('steamed_basmati_rice_1794919535032.jpg'),
+    image: IMG('raw_steamed_rice_1795016587703.jpg'),
   },
 ];
 

@@ -28,7 +28,7 @@ export function GallerySection() {
             </p>
           </div>
           <p className="text-xs text-[#F5EBE1]/55 max-w-xs">
-            Representative culinary photography illustrating our menu categories.
+            Representative kitchen photography illustrating our menu categories.
           </p>
         </div>
 

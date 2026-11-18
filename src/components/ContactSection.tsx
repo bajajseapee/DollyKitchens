@@ -13,7 +13,7 @@ export function ContactSection() {
             Visit or Reach Out
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FFF8EE] text-balance">
-            Contact Dolly Kitchen's
+            Contact Dolly's Kitchen
           </h2>
           <p className="text-sm sm:text-base text-[#F5EBE1]/80 mt-2">
             Available daily in Lonavala for freshly prepared Takeaway and Home Delivery.
@@ -122,7 +122,7 @@ export function ContactSection() {
             </p>
             <a
               href={`${BUSINESS_INFO.whatsappUrl}?text=${encodeURIComponent(
-                "Hello Dolly Kitchen's! Could you please share your exact location pin for Takeaway pickup in Lonavala?"
+                "Hello Dolly's Kitchen! Could you please share your exact location pin for Takeaway pickup in Lonavala?"
               )}`}
               target="_blank"
               rel="noopener noreferrer"

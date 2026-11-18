@@ -8,6 +8,7 @@ import { ShoppingBag } from 'lucide-react';
 import { AboutSection } from './components/AboutSection';
 import { CartDrawer } from './components/CartDrawer';
 import { ContactSection } from './components/ContactSection';
+import { DksDishFinder } from './components/DksDishFinder';
 import { Footer } from './components/Footer';
 import { GallerySection } from './components/GallerySection';
 import { HeroSection } from './components/HeroSection';
@@ -155,7 +156,7 @@ export default function App() {
         <div
           role="status"
           aria-live="polite"
-          className="fixed bottom-16 md:bottom-6 right-4 sm:right-6 z-40 rounded-lg bg-[#2A060C] border border-[#F4C430]/60 px-4 py-2.5 shadow-xl flex items-center gap-3 text-xs sm:text-sm text-[#FFF8EE]"
+          className="fixed bottom-32 md:bottom-24 right-4 sm:right-6 z-40 rounded-lg bg-[#2A060C] border border-[#F4C430]/60 px-4 py-2.5 shadow-xl flex items-center gap-3 text-xs sm:text-sm text-[#FFF8EE]"
         >
           <span>{addedBanner}</span>
           <button
@@ -190,6 +191,13 @@ export default function App() {
           </button>
         </div>
       )}
+
+      <DksDishFinder
+        cartItems={cartItems}
+        onAddToCart={handleAddToCart}
+        onOpenCart={() => setIsCartOpen(true)}
+        hasMobileCartBar={totalCartCount > 0 && !isCartOpen}
+      />
 
       <CartDrawer
         isOpen={isCartOpen}

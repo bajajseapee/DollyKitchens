@@ -25,7 +25,7 @@ export function Navbar({ cartItemCount, onOpenCart }: NavbarProps) {
           href="#home"
           className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#F4C430] hover:text-[#FFF8EE] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F4C430] rounded-sm"
         >
-          Dolly Kitchen's
+          Dolly's Kitchen
         </a>
 
         {/* Zone 2: 5 concise single-line text nav links */}

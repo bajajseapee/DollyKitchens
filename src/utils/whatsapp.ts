@@ -25,7 +25,7 @@ export function buildOrderWhatsAppMessage(
     ? `\nContact Number: ${form.contactNumber.trim()}\n`
     : '\n';
 
-  return `Hello Dolly Kitchen's!
+  return `Hello Dolly's Kitchen!
 
 I would like to place an order.
 
@@ -49,7 +49,7 @@ export function buildWhatsAppUrl(message: string): string {
 }
 
 export function buildPartyEnquiryMessage(form: PartyEnquiryFormState): string {
-  return `Hello Dolly Kitchen's!
+  return `Hello Dolly's Kitchen!
 
 I would like to enquire about a Party / Bulk Order (Per Kg Menu).
 
@@ -63,7 +63,7 @@ Please share per-kg rates and advance booking details. Thank you!`;
 }
 
 export function buildQuickBulkDishUrl(dishName: string): string {
-  const message = `Hello Dolly Kitchen's!
+  const message = `Hello Dolly's Kitchen!
 
 I would like to enquire about per-kg rates and advance booking details for:
 ${dishName}

@@ -101,7 +101,7 @@ export function PartyBulkSection() {
           </p>
           <p className="text-xs sm:text-sm text-[#F4C430] font-medium mt-3">
             Note: Bulk-order rates and advance booking details must be confirmed directly with
-            Dolly Kitchen's.
+            Dolly's Kitchen.
           </p>
         </div>
 
@@ -340,7 +340,7 @@ export function PartyBulkSection() {
                     />
                     <p>
                       WhatsApp has been prepared with your enquiry. Please tap Send in WhatsApp to
-                      confirm rates and advance booking directly with Dolly Kitchen's.
+                      confirm rates and advance booking directly with Dolly's Kitchen.
                     </p>
                   </div>
                   <a
