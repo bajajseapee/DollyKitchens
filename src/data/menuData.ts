@@ -7,7 +7,9 @@ export const BUSINESS_INFO = {
   heroHeadline: 'Good Food. Great Flavours. Crafted with Love.',
   heroSubtext:
     "Explore delicious Chinese, Indian and Tandoor favourites at Dolly's Kitchen, Lonavala.",
-  location: 'Lonavala, Maharashtra, India',
+  location: 'Hudco Colony, Lonavala, Maharashtra',
+  address: "Zopadi No.46 Gavthan, Dolly's Kitchen, Hudco Colony, Lonavala",
+  mapsSearchQuery: "Zopadi No.46 Gavthan, Dolly's Kitchen, Hudco Colony, Lonavala",
   phone: '8888010822',
   phoneHref: 'tel:+918888010822',
   whatsappDisplay: '+91 8888010822',

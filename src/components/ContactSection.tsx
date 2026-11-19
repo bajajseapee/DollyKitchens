@@ -1,5 +1,6 @@
 import { Clock, Mail, MapPin, MessageCircle, Phone, ShoppingBag } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/menuData';
+import { LocationMap } from './LocationMap';
 
 export function ContactSection() {
   return (
@@ -13,7 +14,7 @@ export function ContactSection() {
             Visit or Reach Out
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FFF8EE] text-balance">
-            Contact Dolly's Kitchen
+            Contact Dolly&apos;s Kitchen
           </h2>
           <p className="text-sm sm:text-base text-[#F5EBE1]/80 mt-2">
             Available daily in Lonavala for freshly prepared Takeaway and Home Delivery.
@@ -32,7 +33,9 @@ export function ContactSection() {
                 <p className="font-display text-lg font-semibold text-[#FFF8EE]">
                   {BUSINESS_INFO.name}
                 </p>
-                <p className="text-sm text-[#F5EBE1]/85">{BUSINESS_INFO.location}</p>
+                <p className="text-sm text-[#F5EBE1]/85 leading-relaxed">
+                  {BUSINESS_INFO.address}
+                </p>
               </div>
 
               <div className="space-y-1.5">
@@ -108,30 +111,8 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Map Location Placeholder */}
-          <div className="lg:col-span-5 rounded-xl bg-[#1F191B] border border-[#E5A93C]/25 p-6 sm:p-8 flex flex-col justify-center items-center text-center min-h-[280px]">
-            <div className="w-12 h-12 rounded-xl bg-[#2A060C] border border-[#E5A93C]/35 flex items-center justify-center mb-4">
-              <MapPin className="w-6 h-6 text-[#F4C430]" aria-hidden="true" />
-            </div>
-            <h3 className="font-display text-xl font-bold text-[#FFF8EE]">
-              Lonavala, Maharashtra
-            </h3>
-            <p className="text-sm text-[#F5EBE1]/75 mt-2 max-w-sm leading-relaxed">
-              Google Maps pin will appear here once the exact street address is added. Need
-              directions for Takeaway pickup?
-            </p>
-            <a
-              href={`${BUSINESS_INFO.whatsappUrl}?text=${encodeURIComponent(
-                "Hello Dolly's Kitchen! Could you please share your exact location pin for Takeaway pickup in Lonavala?"
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#E5A93C]/50 hover:bg-[#F4C430] hover:text-[#161214] text-sm font-semibold text-[#F4C430] transition-colors"
-            >
-              <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              <span>Request Location on WhatsApp</span>
-            </a>
-          </div>
+          {/* Interactive Google Map Card */}
+          <LocationMap />
         </div>
       </div>
     </section>

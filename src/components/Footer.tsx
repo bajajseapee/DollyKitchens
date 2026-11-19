@@ -92,7 +92,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="text-xs text-[#F5EBE1]/65 pt-1">
-                {BUSINESS_INFO.location}
+                {BUSINESS_INFO.address}
               </li>
             </ul>
           </div>
