@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from 'react';
-import { Calendar, CheckCircle2, MessageCircle, Users } from 'lucide-react';
+import { useMemo, useState, type FormEvent } from 'react';
+import { Calendar, CheckCircle2, MessageCircle, Minus, Plus, Users } from 'lucide-react';
 import { BULK_ORDER_ITEMS } from '../data/menuData';
+import { UI_COPY, useLanguage } from '../context/LanguageContext';
 import { PartyEnquiryFormState } from '../types/menu';
 import {
   buildPartyEnquiryMessage,
@@ -16,7 +17,19 @@ const BULK_GROUPS: Array<'Royal Biryanis' | 'Fragrant Pulaos' | 'Specialties & C
   'Specialties & Curries',
 ];
 
+const GUEST_PRESETS = [
+  { guests: 15, label: '15 Guests', recKg: 3, suggestion: '2 kg Biryani + 1 kg Curry' },
+  { guests: 30, label: '30 Guests', recKg: 5, suggestion: '3 kg Biryani + 2 kg Curry' },
+  { guests: 50, label: '50 Guests', recKg: 8, suggestion: '5 kg Biryani + 3 kg Curry' },
+  { guests: 75, label: '75+ Guests', recKg: 12, suggestion: '8 kg Biryani + 4 kg Curry' },
+];
+
 export function PartyBulkSection() {
+  const { lang } = useLanguage();
+  const copy = UI_COPY[lang].party;
+
+  const [selectedGuests, setSelectedGuests] = useState<number | null>(null);
+  const [kgById, setKgById] = useState<Record<string, number>>({});
   const [form, setForm] = useState<PartyEnquiryFormState>({
     customerName: '',
     contactNumber: '',
@@ -27,18 +40,66 @@ export function PartyBulkSection() {
   const [errors, setErrors] = useState<Partial<Record<keyof PartyEnquiryFormState, string>>>({});
   const [generatedUrl, setGeneratedUrl] = useState<string | null>(null);
 
-  const handleSelectBulkDish = (dishName: string) => {
-    setForm((prev) => {
-      const existing = prev.foodRequirements.trim();
-      const updated = existing
-        ? existing.includes(dishName)
-          ? existing
-          : `${existing}, ${dishName}`
-        : `${dishName} (Per Kg)`;
-      return { ...prev, foodRequirements: updated };
+  const selectedEntries = useMemo(
+    () =>
+      BULK_ORDER_ITEMS.filter((item) => (kgById[item.id] ?? 0) > 0).map((item) => ({
+        item,
+        kg: kgById[item.id],
+      })),
+    [kgById]
+  );
+
+  const totalSelectedKg = useMemo(
+    () => selectedEntries.reduce((sum, entry) => sum + entry.kg, 0),
+    [selectedEntries]
+  );
+
+  const syncEstimatorToForm = (nextKgMap: Record<string, number>, guests: number | null) => {
+    const chosen = BULK_ORDER_ITEMS.filter((item) => (nextKgMap[item.id] ?? 0) > 0).map(
+      (item) => `${item.name} (${nextKgMap[item.id]} kg)`
+    );
+    const totalKg = BULK_ORDER_ITEMS.reduce((sum, item) => sum + (nextKgMap[item.id] ?? 0), 0);
+
+    setForm((prev) => ({
+      ...prev,
+      approximateQuantity:
+        totalKg > 0 && guests
+          ? `${totalKg} kg total for ~${guests} guests`
+          : totalKg > 0
+            ? `${totalKg} kg total (~${totalKg * 6}–${totalKg * 7} servings)`
+            : guests
+              ? `Approx. ${guests} guests`
+              : prev.approximateQuantity,
+      foodRequirements: chosen.length > 0 ? chosen.join(', ') : prev.foodRequirements,
+    }));
+  };
+
+  const adjustDishKg = (id: string, delta: number) => {
+    setKgById((prev) => {
+      const current = prev[id] ?? 0;
+      const next = Math.max(0, Math.min(25, current + delta));
+      const updated = { ...prev, [id]: next };
+      syncEstimatorToForm(updated, selectedGuests);
+      return updated;
     });
-    const formEl = document.getElementById('party-enquiry-form');
-    formEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  const applyGuestPreset = (preset: (typeof GUEST_PRESETS)[number]) => {
+    setSelectedGuests(preset.guests);
+    // Pre-select Chicken Biryani + Veg Pulao / Curry proportions if empty
+    const hasExisting = Object.values(kgById).some((qty) => qty > 0);
+    if (!hasExisting) {
+      const biryaniKg = Math.max(2, Math.round(preset.recKg * 0.65));
+      const curryKg = Math.max(1, preset.recKg - biryaniKg);
+      const nextMap: Record<string, number> = {
+        'bulk-chicken-dum-biryani': biryaniKg,
+        'bulk-chicken-curry-gavran': curryKg,
+      };
+      setKgById(nextMap);
+      syncEstimatorToForm(nextMap, preset.guests);
+    } else {
+      syncEstimatorToForm(kgById, preset.guests);
+    }
   };
 
   const validate = (): boolean => {
@@ -87,25 +148,88 @@ export function PartyBulkSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         {/* Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-10">
           <p className="text-xs sm:text-sm font-semibold text-[#E5A93C] tracking-wide mb-2">
-            Party &amp; Bulk Orders · Per Kg Menu
+            {copy.kicker}
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FFF8EE] text-balance">
-            Planning a Gathering? Let Us Handle the Food!
+            {copy.title}
           </h2>
-          <p className="text-base text-[#F5EBE1]/85 mt-3 leading-relaxed">
-            Ideal for family gatherings, weekend villa parties in Lonavala, group meals, and bulk
-            catering enquiries. Order our signature biryanis, pulaos, and Gavran curries by the
-            kilo.
-          </p>
-          <p className="text-xs sm:text-sm text-[#F4C430] font-medium mt-3">
-            Note: Bulk-order rates and advance booking details must be confirmed directly with
-            Dolly's Kitchen.
-          </p>
+          <p className="text-base text-[#F5EBE1]/85 mt-3 leading-relaxed">{copy.subtitle}</p>
+          <p className="text-xs sm:text-sm text-[#F4C430] font-medium mt-3">{copy.note}</p>
         </div>
 
-        {/* Main Grid: Left Per-Kg Menu | Right Enquiry Form */}
+        {/* Interactive Villa & Party Quantity Estimator Bar */}
+        <div className="rounded-xl bg-[#2A060C] border border-[#E5A93C]/30 p-5 sm:p-6 mb-10">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div className="max-w-xl">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-[#FFF8EE]">
+                {copy.plannerTitle}
+              </h3>
+              <p className="text-xs sm:text-sm text-[#F5EBE1]/80 mt-1 leading-relaxed">
+                {copy.plannerSubtitle}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {GUEST_PRESETS.map((preset) => {
+                const active = selectedGuests === preset.guests;
+                return (
+                  <button
+                    key={preset.guests}
+                    type="button"
+                    onClick={() => applyGuestPreset(preset)}
+                    aria-pressed={active}
+                    className={`px-3.5 py-2 min-h-[40px] rounded-lg text-xs sm:text-sm font-semibold border transition-colors whitespace-nowrap cursor-pointer ${
+                      active
+                        ? 'bg-[#F4C430] text-[#161214] border-[#F4C430]'
+                        : 'bg-[#161214] text-[#FFF8EE] border-[#E5A93C]/25 hover:border-[#F4C430]'
+                    }`}
+                  >
+                    {preset.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {(totalSelectedKg > 0 || selectedGuests !== null) && (
+            <div className="mt-4 pt-4 border-t border-[#E5A93C]/20 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
+              <div className="text-[#F5EBE1] tabular-nums">
+                <span className="font-semibold text-[#E5A93C]">{copy.recommendedLabel}:</span>{' '}
+                {totalSelectedKg > 0 ? (
+                  <>
+                    <strong className="text-[#FFF8EE]">{totalSelectedKg} kg</strong> (~
+                    {totalSelectedKg * 6}–{totalSelectedKg * 7} servings)
+                    {selectedEntries.length > 0 && (
+                      <span className="text-[#F5EBE1]/75">
+                        {' '}
+                        · {selectedEntries.map((e) => `${e.item.name} (${e.kg} kg)`).join(', ')}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <span>
+                    {GUEST_PRESETS.find((p) => p.guests === selectedGuests)?.suggestion}
+                  </span>
+                )}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const formEl = document.getElementById('party-enquiry-form');
+                  formEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }}
+                className="text-xs font-bold text-[#F4C430] underline cursor-pointer whitespace-nowrap"
+              >
+                {lang === 'hi' ? 'नीचे फॉर्म देखें' : 'Review Enquiry Form'}
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Main Grid: Left Per-Kg Dishes with Kg Steppers | Right Enquiry Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left: Per Kg Dishes */}
           <div className="lg:col-span-7 space-y-8">
@@ -124,52 +248,72 @@ export function PartyBulkSection() {
                   </div>
 
                   <div className="divide-y divide-[#E5A93C]/12">
-                    {groupItems.map((item) => (
-                      <div
-                        key={item.id}
-                        className="py-3.5 first:pt-1 last:pb-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-                      >
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-12 h-12 rounded-lg overflow-hidden shrink-0 border border-[#E5A93C]/20 bg-[#1F191B]">
-                            <FoodImage
-                              src={item.image}
-                              alt={`${item.name} bulk order`}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-2">
-                              <DietaryBadge dietary={item.dietary} />
-                              <span className="font-display text-base sm:text-lg font-semibold text-[#FFF8EE] truncate">
-                                {item.name}
-                              </span>
+                    {groupItems.map((item) => {
+                      const kgCount = kgById[item.id] ?? 0;
+                      return (
+                        <div
+                          key={item.id}
+                          className="py-3.5 first:pt-1 last:pb-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                        >
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div className="w-12 h-12 rounded-lg overflow-hidden shrink-0 border border-[#E5A93C]/20 bg-[#1F191B]">
+                              <FoodImage
+                                src={item.image}
+                                alt={`${item.name} bulk order`}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
-                            <p className="text-xs text-[#E5A93C] font-medium mt-0.5">
-                              Ask for Rates
-                            </p>
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-2">
+                                <DietaryBadge dietary={item.dietary} />
+                                <span className="font-display text-base sm:text-lg font-semibold text-[#FFF8EE] truncate">
+                                  {item.name}
+                                </span>
+                              </div>
+                              <p className="text-xs text-[#E5A93C] font-medium mt-0.5">
+                                Ask for Rates · 1 kg serves ~6–7
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-2 shrink-0">
+                            <div className="inline-flex items-center rounded-lg bg-[#161214] border border-[#E5A93C]/30">
+                              <button
+                                type="button"
+                                onClick={() => adjustDishKg(item.id, -1)}
+                                aria-label={`Decrease ${item.name} kilos`}
+                                className="w-8 h-8 inline-flex items-center justify-center text-[#F5EBE1] hover:text-[#F4C430] transition-colors cursor-pointer"
+                              >
+                                <Minus className="w-3.5 h-3.5" aria-hidden="true" />
+                              </button>
+                              <span className="min-w-[46px] text-center text-xs font-bold text-[#FFF8EE] tabular-nums px-1">
+                                {kgCount} kg
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => adjustDishKg(item.id, 1)}
+                                aria-label={`Increase ${item.name} kilos`}
+                                className="w-8 h-8 inline-flex items-center justify-center text-[#F5EBE1] hover:text-[#F4C430] transition-colors cursor-pointer"
+                              >
+                                <Plus className="w-3.5 h-3.5" aria-hidden="true" />
+                              </button>
+                            </div>
+
+                            <a
+                              href={buildQuickBulkDishUrl(
+                                kgCount > 0 ? `${item.name} (${kgCount} kg)` : item.name
+                              )}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F4C430] hover:bg-[#E5A93C] text-[#161214] text-xs font-bold transition-colors whitespace-nowrap"
+                            >
+                              <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                              <span>WhatsApp</span>
+                            </a>
                           </div>
                         </div>
-
-                        <div className="flex items-center gap-2 shrink-0">
-                          <button
-                            type="button"
-                            onClick={() => handleSelectBulkDish(item.name)}
-                            className="px-3 py-1.5 rounded-lg border border-[#E5A93C]/40 hover:border-[#F4C430] text-xs font-semibold text-[#FFF8EE] hover:text-[#F4C430] transition-colors whitespace-nowrap cursor-pointer"
-                          >
-                            Add to Enquiry
-                          </button>
-                          <a
-                            href={buildQuickBulkDishUrl(item.name)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F4C430] hover:bg-[#E5A93C] text-[#161214] text-xs font-bold transition-colors whitespace-nowrap"
-                          >
-                            <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                            <span>WhatsApp</span>
-                          </a>
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               );
@@ -328,7 +472,7 @@ export function PartyBulkSection() {
                 className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[46px] rounded-lg bg-[#F4C430] hover:bg-[#E5A93C] text-[#161214] font-bold text-sm sm:text-base transition-colors cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                <span>Send Party Enquiry on WhatsApp</span>
+                <span>{copy.sendEstimate}</span>
               </button>
 
               {generatedUrl && (
@@ -340,7 +484,7 @@ export function PartyBulkSection() {
                     />
                     <p>
                       WhatsApp has been prepared with your enquiry. Please tap Send in WhatsApp to
-                      confirm rates and advance booking directly with Dolly's Kitchen.
+                      confirm rates and advance booking directly with Dolly&apos;s Kitchen.
                     </p>
                   </div>
                   <a

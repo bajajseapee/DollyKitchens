@@ -1,7 +1,11 @@
 import { Flame, ShieldCheck, Sparkles, UtensilsCrossed } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/menuData';
+import { UI_COPY, useLanguage } from '../context/LanguageContext';
 
 export function AboutSection() {
+  const { lang } = useLanguage();
+  const copy = UI_COPY[lang].about;
+
   return (
     <section id="about" className="py-16 sm:py-20 border-t border-[#E5A93C]/15 bg-[#161214]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
@@ -22,25 +26,20 @@ export function AboutSection() {
           <div className="lg:col-span-6 space-y-6">
             <div>
               <p className="text-xs sm:text-sm font-semibold text-[#E5A93C] tracking-wide mb-2">
-                About Dolly&apos;s Kitchen · {BUSINESS_INFO.hindiName}
+                {copy.kicker}
               </p>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FFF8EE] text-balance leading-tight">
-                {BUSINESS_INFO.tagline}
+                {copy.headline}
               </h2>
             </div>
 
-            <p className="text-base text-[#F5EBE1]/85 leading-relaxed">
-              Serving Lonavala every evening from {BUSINESS_INFO.hours}, Dolly&apos;s Kitchen (
-              {BUSINESS_INFO.hindiName}) brings together three beloved culinary traditions under one
-              roof: wok-fired Indo-Chinese favourites, rich homestyle Indian curries and biryanis,
-              and smoky charcoal-grilled Tandoor starters.
-            </p>
+            <p className="text-base text-[#F5EBE1]/85 leading-relaxed">{copy.story}</p>
 
             {/* Heritage Parchment Callout echoing the signboard */}
             <div className="rounded-lg bg-[#FFF8EE] text-[#4A0D17] p-4 border border-[#D4901C]">
               <div className="border border-[#D4901C]/60 rounded px-4 py-3 text-center">
                 <p className="font-display text-base sm:text-lg font-bold tracking-tight">
-                  We Accept Orders For All Types Of Meals, As Well As Online Orders.
+                  {copy.callout}
                 </p>
               </div>
             </div>
@@ -50,37 +49,37 @@ export function AboutSection() {
               <div className="rounded-lg bg-[#1F191B] border border-[#E5A93C]/15 p-4">
                 <Flame className="w-5 h-5 text-[#F4C430] mb-2.5" aria-hidden="true" />
                 <h3 className="font-display text-base font-semibold text-[#FFF8EE]">
-                  Freshly Prepared
+                  {copy.pillars[0].title}
                 </h3>
                 <p className="text-xs text-[#F5EBE1]/75 mt-1 leading-relaxed">
-                  Every dish is cooked fresh to order over high-flame woks and glowing tandoors.
+                  {copy.pillars[0].desc}
                 </p>
               </div>
 
               <div className="rounded-lg bg-[#1F191B] border border-[#E5A93C]/15 p-4">
                 <Sparkles className="w-5 h-5 text-[#F4C430] mb-2.5" aria-hidden="true" />
                 <h3 className="font-display text-base font-semibold text-[#FFF8EE]">
-                  Homestyle Spices
+                  {copy.pillars[1].title}
                 </h3>
                 <p className="text-xs text-[#F5EBE1]/75 mt-1 leading-relaxed">
-                  Balanced spice blends for comforting dals, handis, biryanis, and Gavran curries.
+                  {copy.pillars[1].desc}
                 </p>
               </div>
 
               <div className="rounded-lg bg-[#1F191B] border border-[#E5A93C]/15 p-4">
                 <ShieldCheck className="w-5 h-5 text-[#F4C430] mb-2.5" aria-hidden="true" />
                 <h3 className="font-display text-base font-semibold text-[#FFF8EE]">
-                  Hygienic Packing
+                  {copy.pillars[2].title}
                 </h3>
                 <p className="text-xs text-[#F5EBE1]/75 mt-1 leading-relaxed">
-                  Carefully packed for quick Lonavala takeaway and warm home delivery.
+                  {copy.pillars[2].desc}
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-3 pt-1 text-sm text-[#F5EBE1]/80">
               <UtensilsCrossed className="w-4 h-4 text-[#E5A93C] shrink-0" aria-hidden="true" />
-              <span>Vegetarian &amp; Non-Vegetarian dishes cooked to order.</span>
+              <span>{copy.dietNote}</span>
             </div>
           </div>
         </div>

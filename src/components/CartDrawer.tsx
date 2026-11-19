@@ -10,6 +10,8 @@ import {
   X,
 } from 'lucide-react';
 import { CartItem, CheckoutFormState, OrderType } from '../types/menu';
+import { UI_COPY, useLanguage } from '../context/LanguageContext';
+import { getKitchenStatus } from '../utils/kitchenStatus';
 import {
   buildOrderWhatsAppMessage,
   buildWhatsAppUrl,
@@ -44,6 +46,9 @@ export function CartDrawer({
   const [errors, setErrors] = useState<Partial<Record<keyof CheckoutFormState, string>>>({});
   const [whatsAppLaunchedUrl, setWhatsAppLaunchedUrl] = useState<string | null>(null);
   const [copiedMessage, setCopiedMessage] = useState(false);
+  const { lang } = useLanguage();
+  const kitchenStatus = getKitchenStatus();
+  const heroCopy = UI_COPY[lang].hero;
 
   if (!isOpen) return null;
 
@@ -120,10 +125,18 @@ export function CartDrawer({
           <div className="flex items-center gap-2.5">
             <ShoppingBag className="w-5 h-5 text-[#F4C430]" aria-hidden="true" />
             <div>
-              <h2 className="font-display text-xl font-bold text-[#FFF8EE]">Your Order Cart</h2>
+              <h2 className="font-display text-xl font-bold text-[#FFF8EE]">
+                {lang === 'hi' ? 'आपका ऑर्डर कार्ट' : 'Your Order Cart'}
+              </h2>
               <p className="text-xs text-[#F5EBE1]/75 tabular-nums">
-                {totalItems} {totalItems === 1 ? 'item' : 'items'} · Subtotal{' '}
-                {formatINR(subtotal)}
+                {totalItems} {totalItems === 1 ? 'item' : 'items'} · {formatINR(subtotal)}
+              </p>
+              <p
+                className={`text-[11px] font-medium mt-0.5 ${
+                  kitchenStatus.isOpen ? 'text-[#4ade80]' : 'text-[#E5A93C]'
+                }`}
+              >
+                {kitchenStatus.isOpen ? heroCopy.statusOpen : heroCopy.statusClosed}
               </p>
             </div>
           </div>

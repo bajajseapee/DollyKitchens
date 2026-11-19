@@ -9,12 +9,14 @@ import { AboutSection } from './components/AboutSection';
 import { CartDrawer } from './components/CartDrawer';
 import { ContactSection } from './components/ContactSection';
 import { DksDishFinder } from './components/DksDishFinder';
+import { FavoritesSection } from './components/FavoritesSection';
 import { Footer } from './components/Footer';
 import { GallerySection } from './components/GallerySection';
 import { HeroSection } from './components/HeroSection';
 import { MenuSection } from './components/MenuSection';
 import { Navbar } from './components/Navbar';
 import { PartyBulkSection } from './components/PartyBulkSection';
+import { LanguageProvider } from './context/LanguageContext';
 import { MENU_ITEMS } from './data/menuData';
 import { CartItem, MenuItem } from './types/menu';
 import { formatINR } from './utils/whatsapp';
@@ -116,6 +118,29 @@ export default function App() {
     setAddedBanner(`Added ${item.name} × ${safeQty} to cart`);
   };
 
+  const handleAddCombo = (
+    entries: Array<{ item: MenuItem; quantity: number }>,
+    label: string
+  ) => {
+    setCartItems((prev) => {
+      const next = [...prev];
+      for (const { item, quantity } of entries) {
+        const safeQty = Math.max(1, Math.floor(quantity));
+        const existingIndex = next.findIndex((entry) => entry.item.id === item.id);
+        if (existingIndex >= 0) {
+          next[existingIndex] = {
+            ...next[existingIndex],
+            quantity: Math.min(99, next[existingIndex].quantity + safeQty),
+          };
+        } else {
+          next.push({ item, quantity: safeQty });
+        }
+      }
+      return next;
+    });
+    setAddedBanner(`Added ${label} to cart`);
+  };
+
   const handleUpdateCartQuantity = (itemId: string, newQuantity: number) => {
     if (newQuantity <= 0) {
       setCartItems((prev) => prev.filter((entry) => entry.item.id !== itemId));
@@ -139,38 +164,45 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#161214] text-[#FFF8EE]">
-      {gmpQuotaExceeded && (
-        <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs md:text-sm text-center sticky top-0 z-50 shadow-sm">
-          <span>
-            Google Maps Platform quota reached. If you are the app owner, visit{' '}
-            <a
-              href="https://developers.google.com/maps/ai/ai-studio?utm_campaign=gmp_mcp_codeassist_v1_aistudio#quota_exceeded_errors"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline font-semibold text-amber-950 hover:text-amber-800"
-            >
-              maps developer site
-            </a>{' '}
-            for instructions to update your account.
-          </span>
-        </div>
-      )}
-      <Navbar cartItemCount={totalCartCount} onOpenCart={() => setIsCartOpen(true)} />
+    <LanguageProvider>
+      <div className="min-h-screen flex flex-col bg-[#161214] text-[#FFF8EE]">
+        {gmpQuotaExceeded && (
+          <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs md:text-sm text-center sticky top-0 z-50 shadow-sm">
+            <span>
+              Google Maps Platform quota reached. If you are the app owner, visit{' '}
+              <a
+                href="https://developers.google.com/maps/ai/ai-studio?utm_campaign=gmp_mcp_codeassist_v1_aistudio#quota_exceeded_errors"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline font-semibold text-amber-950 hover:text-amber-800"
+              >
+                maps developer site
+              </a>{' '}
+              for instructions to update your account.
+            </span>
+          </div>
+        )}
+        <Navbar cartItemCount={totalCartCount} onOpenCart={() => setIsCartOpen(true)} />
 
-      <main className="flex-1">
-        <HeroSection />
-        <AboutSection />
-        <MenuSection
-          cartItems={cartItems}
-          onAddToCart={handleAddToCart}
-          onUpdateCartQuantity={handleUpdateCartQuantity}
-          onOpenCart={() => setIsCartOpen(true)}
-        />
-        <PartyBulkSection />
-        <GallerySection />
-        <ContactSection />
-      </main>
+        <main className="flex-1">
+          <HeroSection />
+          <AboutSection />
+          <FavoritesSection
+            cartItems={cartItems}
+            onAddToCart={handleAddToCart}
+            onAddCombo={handleAddCombo}
+            onOpenCart={() => setIsCartOpen(true)}
+          />
+          <MenuSection
+            cartItems={cartItems}
+            onAddToCart={handleAddToCart}
+            onUpdateCartQuantity={handleUpdateCartQuantity}
+            onOpenCart={() => setIsCartOpen(true)}
+          />
+          <PartyBulkSection />
+          <GallerySection />
+          <ContactSection />
+        </main>
 
       <Footer />
 
@@ -222,14 +254,15 @@ export default function App() {
         hasMobileCartBar={totalCartCount > 0 && !isCartOpen}
       />
 
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
-        onUpdateQuantity={handleUpdateCartQuantity}
-        onRemoveItem={handleRemoveItem}
-        onClearCart={handleClearCart}
-      />
-    </div>
+        <CartDrawer
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          cartItems={cartItems}
+          onUpdateQuantity={handleUpdateCartQuantity}
+          onRemoveItem={handleRemoveItem}
+          onClearCart={handleClearCart}
+        />
+      </div>
+    </LanguageProvider>
   );
 }

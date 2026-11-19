@@ -1,6 +1,11 @@
 import { useMemo, useState } from 'react';
 import { Minus, Plus, Search, ShoppingBag, Sparkles, X } from 'lucide-react';
 import { MENU_CATEGORIES, MENU_ITEMS } from '../data/menuData';
+import {
+  CATEGORY_TRANSLATIONS,
+  UI_COPY,
+  useLanguage,
+} from '../context/LanguageContext';
 import { CartItem, MenuCategoryId, MenuItem } from '../types/menu';
 import { formatINR } from '../utils/whatsapp';
 import { DietaryBadge } from './DietaryBadge';
@@ -51,6 +56,8 @@ export function MenuSection({
   onUpdateCartQuantity,
   onOpenCart,
 }: MenuSectionProps) {
+  const { lang } = useLanguage();
+  const copy = UI_COPY[lang].menu;
   const [selectedCategory, setSelectedCategory] = useState<MenuCategoryId | 'all'>('all');
   const [dietaryFilter, setDietaryFilter] = useState<DietaryFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -154,15 +161,13 @@ export function MenuSection({
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
           <div>
             <p className="text-xs sm:text-sm font-semibold text-[#E5A93C] tracking-wide mb-2">
-              Complete Takeaway &amp; Delivery Menu
+              {copy.kicker}
             </p>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FFF8EE] text-balance">
-              Explore Our Food Menu
+              {copy.title}
             </h2>
             <p className="text-sm sm:text-base text-[#F5EBE1]/80 mt-2 max-w-2xl">
-              Select dishes, portions, and quantities below, then review your order in the cart to
-              send it directly to Dolly's Kitchen on WhatsApp. Dish photographs are representative
-              kitchen previews.
+              {copy.subtitle}
             </p>
           </div>
 
@@ -171,7 +176,7 @@ export function MenuSection({
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#2A060C] hover:bg-[#4A0D17] border border-[#D4901C]/50 text-sm font-semibold text-[#F4C430] transition-colors self-start lg:self-auto whitespace-nowrap shrink-0"
           >
             <Sparkles className="w-4 h-4" aria-hidden="true" />
-            <span>Looking for Per-Kg Party Orders?</span>
+            <span>{copy.partyCta}</span>
           </a>
         </div>
 
@@ -188,7 +193,7 @@ export function MenuSection({
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search dishes (e.g. Paneer Tikka, Hakka Noodles, Biryani)..."
+                placeholder={copy.searchPlaceholder}
                 aria-label="Search menu dishes"
                 className="w-full pl-10 pr-10 py-2.5 min-h-[44px] rounded-lg bg-[#161214] border border-[#E5A93C]/25 focus:border-[#F4C430] focus:outline-none text-sm text-[#FFF8EE] placeholder:text-[#F5EBE1]/45 transition-colors"
               />
@@ -219,7 +224,7 @@ export function MenuSection({
                     : 'text-[#F5EBE1]/75 hover:text-[#FFF8EE] border border-transparent'
                 }`}
               >
-                All Items
+                {copy.allItems}
               </button>
               <button
                 type="button"
@@ -231,7 +236,7 @@ export function MenuSection({
                 }`}
               >
                 <DietaryBadge dietary="veg" />
-                <span>Veg</span>
+                <span>{copy.veg}</span>
               </button>
               <button
                 type="button"
@@ -243,7 +248,7 @@ export function MenuSection({
                 }`}
               >
                 <DietaryBadge dietary="non-veg" />
-                <span>Non-Veg</span>
+                <span>{copy.nonVeg}</span>
               </button>
             </div>
           </div>
@@ -265,7 +270,7 @@ export function MenuSection({
                   : 'bg-[#161214] text-[#F5EBE1]/80 border-[#FFF8EE]/10 hover:border-[#E5A93C]/40 hover:text-[#FFF8EE]'
               }`}
             >
-              All Categories ({TOTAL_DISH_CARDS})
+              {copy.allCategories} ({TOTAL_DISH_CARDS})
             </button>
 
             {MENU_CATEGORIES.map((category) => {
@@ -283,7 +288,9 @@ export function MenuSection({
                       : 'bg-[#161214] text-[#F5EBE1]/80 border-[#FFF8EE]/10 hover:border-[#E5A93C]/40 hover:text-[#FFF8EE]'
                   }`}
                 >
-                  {category.shortLabel}
+                  {lang === 'hi'
+                    ? CATEGORY_TRANSLATIONS[category.id].hiShort
+                    : category.shortLabel}
                 </button>
               );
             })}
@@ -303,7 +310,9 @@ export function MenuSection({
                 {' '}
                 in{' '}
                 <span className="text-[#E5A93C] font-medium">
-                  {MENU_CATEGORIES.find((c) => c.id === selectedCategory)?.label}
+                  {lang === 'hi'
+                    ? CATEGORY_TRANSLATIONS[selectedCategory].hiLabel
+                    : MENU_CATEGORIES.find((c) => c.id === selectedCategory)?.label}
                 </span>
               </>
             )}
@@ -315,7 +324,7 @@ export function MenuSection({
               onClick={resetFilters}
               className="text-xs sm:text-sm font-semibold text-[#F4C430] hover:underline cursor-pointer"
             >
-              Reset all filters
+              {copy.resetFilters}
             </button>
           )}
         </div>
@@ -345,9 +354,15 @@ export function MenuSection({
                 {/* Category Header */}
                 <div className="border-b border-[#E5A93C]/25 pb-4">
                   <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#FFF8EE]">
-                    {category.label}
+                    {lang === 'hi'
+                      ? CATEGORY_TRANSLATIONS[category.id].hiLabel
+                      : category.label}
                   </h3>
-                  <p className="text-sm text-[#F5EBE1]/75 mt-1">{category.description}</p>
+                  <p className="text-sm text-[#F5EBE1]/75 mt-1">
+                    {lang === 'hi'
+                      ? CATEGORY_TRANSLATIONS[category.id].hiDesc
+                      : category.description}
+                  </p>
                 </div>
 
                 {/* Subcategories */}
@@ -493,7 +508,7 @@ export function MenuSection({
                                       className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 min-h-[38px] rounded-lg bg-[#F4C430] hover:bg-[#E5A93C] text-[#161214] text-xs sm:text-sm font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                                     >
                                       <ShoppingBag className="w-3.5 h-3.5" aria-hidden="true" />
-                                      <span>Add to Cart</span>
+                                      <span>{copy.addToCart}</span>
                                     </button>
                                   </div>
 

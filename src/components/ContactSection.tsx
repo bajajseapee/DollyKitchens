@@ -1,8 +1,12 @@
 import { Clock, Mail, MapPin, MessageCircle, Phone, ShoppingBag } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/menuData';
+import { UI_COPY, useLanguage } from '../context/LanguageContext';
 import { LocationMap } from './LocationMap';
 
 export function ContactSection() {
+  const { lang } = useLanguage();
+  const copy = UI_COPY[lang].contact;
+
   return (
     <section
       id="contact"
@@ -11,14 +15,12 @@ export function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         <div className="max-w-2xl mb-10">
           <p className="text-xs sm:text-sm font-semibold text-[#E5A93C] tracking-wide mb-2">
-            Visit or Reach Out
+            {copy.kicker}
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FFF8EE] text-balance">
-            Contact Dolly&apos;s Kitchen
+            {copy.title}
           </h2>
-          <p className="text-sm sm:text-base text-[#F5EBE1]/80 mt-2">
-            Available daily in Lonavala for freshly prepared Takeaway and Home Delivery.
-          </p>
+          <p className="text-sm sm:text-base text-[#F5EBE1]/80 mt-2">{copy.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -28,7 +30,7 @@ export function ContactSection() {
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#E5A93C]">
                   <MapPin className="w-4 h-4" aria-hidden="true" />
-                  <span>Location</span>
+                  <span>{copy.locationLabel}</span>
                 </div>
                 <p className="font-display text-lg font-semibold text-[#FFF8EE]">
                   {BUSINESS_INFO.name}
@@ -41,7 +43,7 @@ export function ContactSection() {
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#E5A93C]">
                   <Clock className="w-4 h-4" aria-hidden="true" />
-                  <span>Opening Hours</span>
+                  <span>{copy.hoursLabel}</span>
                 </div>
                 <p className="text-base font-semibold text-[#FFF8EE] tabular-nums">
                   {BUSINESS_INFO.hours}
@@ -55,7 +57,7 @@ export function ContactSection() {
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#E5A93C]">
                   <Phone className="w-4 h-4" aria-hidden="true" />
-                  <span>Phone &amp; Orders</span>
+                  <span>{copy.phoneLabel}</span>
                 </div>
                 <a
                   href={BUSINESS_INFO.phoneHref}
@@ -69,7 +71,7 @@ export function ContactSection() {
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#E5A93C]">
                   <Mail className="w-4 h-4" aria-hidden="true" />
-                  <span>Email</span>
+                  <span>{copy.emailLabel}</span>
                 </div>
                 <a
                   href={BUSINESS_INFO.emailHref}
@@ -90,7 +92,9 @@ export function ContactSection() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 min-h-[42px] rounded-lg bg-[#F4C430] hover:bg-[#E5A93C] text-[#161214] text-sm font-bold transition-colors whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                <span>Chat on WhatsApp ({BUSINESS_INFO.whatsappDisplay})</span>
+                <span>
+                  {copy.chatWhatsApp} ({BUSINESS_INFO.whatsappDisplay})
+                </span>
               </a>
 
               <a
@@ -106,7 +110,7 @@ export function ContactSection() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 min-h-[42px] rounded-lg border border-[#E5A93C]/40 hover:border-[#F4C430] text-[#FFF8EE] hover:text-[#F4C430] text-sm font-semibold transition-colors whitespace-nowrap shrink-0"
               >
                 <Mail className="w-4 h-4" aria-hidden="true" />
-                <span>Email Us</span>
+                <span>{copy.emailUs}</span>
               </a>
             </div>
           </div>
